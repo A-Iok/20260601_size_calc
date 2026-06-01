@@ -27,22 +27,19 @@ jobs:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v5
-            - name: Set up Bun
-              uses: oven-sh/setup-bun@v2
-            - name: Install dependencies
-              run: bun install
-            - name: Build
-              run: bun run build
-            - name: Setup Pages
-              uses: actions/configure-pages@v5
-            - name: Upload artifact
-              uses: actions/upload-pages-artifact@v4
-              with:
-                  # Upload dist folder
-                  path: "./dist"
-            - name: Deploy to GitHub Pages
-              id: deployment
-              uses: actions/deploy-pages@v4
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Deploy to GitHub Pages
+        run: npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
