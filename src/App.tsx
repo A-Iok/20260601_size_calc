@@ -95,7 +95,7 @@ const App = () => {
           <input type='string' className="answerX" onChange={(e) => setAnswerX(e.target.value)} />×
           <input type='string' className="answerZ" onChange={(e) => setAnswerZ(e.target.value)} />
         </div>
-        <div>切寸：<input type='string' className="answerKiri" onChange={(e) => setAnswerKiri(e.target.value)} /></div>
+        <div>切寸（横+高さ+高さ）：<input type='string' className="answerKiri" onChange={(e) => setAnswerKiri(e.target.value)} /></div>
         <div className="container">
           <button onClick={checkAnswer}>採点</button>
           <h3>{result}</h3>
